@@ -1,3 +1,33 @@
+// Initialize Supabase Connection
+const supabaseUrl = 'https://supabase.co';
+const supabaseKey = 'sb_publishable_I_Mrps4vdvF8QbHudweh9w_9DO7IYKr'; 
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+// Global variable to hold database locations
+let databaseLocations = [];
+
+// Fetch locations from Supabase when the app loads
+async function loadSupabaseData() {
+  try {
+    const { data, error } = await supabaseClient
+      .from('locations')
+      .select('*');
+    
+    if (error) throw error;
+    
+    // Update our array with real-time cloud data
+    databaseLocations = data;
+    console.log("Successfully loaded Cape Town spots:", databaseLocations);
+  } catch (err) {
+    console.error("Error connecting to Supabase:", err.message);
+    // Fallback to static LOCATIONS array if database fails
+    databaseLocations = LOCATIONS; 
+  }
+}
+
+// Kick off the fetch immediately
+loadSupabaseData();
+
 // ===== Recommendation engine (rule-based "AI") =====
 const FREE_LIMIT = 3;
 const usageKey = "ghct_usage_month";
