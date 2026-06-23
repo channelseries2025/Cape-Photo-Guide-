@@ -1,5 +1,6 @@
 // Initialize Supabase Connection
-const supabaseUrl = 'https://supabase.co';
+const supabaseUrl = 'https://girqgrgzzgvxsyvawuge.supabase.co
+';
 const supabaseKey = 'sb_publishable_I_Mrps4vdvF8QbHudweh9w_9DO7IYKr'; 
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
