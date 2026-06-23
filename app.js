@@ -1,6 +1,5 @@
 // Initialize Supabase Connection
-const supabaseUrl = 'https://girqgrgzzgvxsyvawuge.supabase.co
-';
+const supabaseUrl = 'https://girqgrgzzgvxsyvawuge.supabase.co';
 const supabaseKey = 'sb_publishable_I_Mrps4vdvF8QbHudweh9w_9DO7IYKr'; 
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -63,7 +62,7 @@ function buildRecommendation(text){
   const budget = budgetFromText(text) || 3000;
 
   const location = pick(LOCATIONS, occasion, budget * 0.4);
-  const photographer = pick(PHOTOGRAPHERS, occasion, budget * 0.45);
+  const location = pick(databaseLocations, occasion, budget * 0.4););
   const videographer = pick(VIDEOGRAPHERS, occasion, budget * 0.5);
   const restaurant = pick(RESTAURANTS, occasion, budget * 0.3);
   const decor = pick(DECOR, occasion, budget * 0.25);
