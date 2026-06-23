@@ -61,7 +61,7 @@ function buildRecommendation(text){
   const occasion = occasionFromText(text);
   const budget = budgetFromText(text) || 3000;
 
-  const location = pick(LOCATIONS, occasion, budget * 0.4);
+  
   const location = pick(databaseLocations, occasion, budget * 0.4););
   const videographer = pick(VIDEOGRAPHERS, occasion, budget * 0.5);
   const restaurant = pick(RESTAURANTS, occasion, budget * 0.3);
