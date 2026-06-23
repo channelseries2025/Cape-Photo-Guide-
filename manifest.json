@@ -1,0 +1,16 @@
+{
+  "name": "Cape Town Photo Experience Guide",
+  "short_name": "Golden Hour CT",
+  "description": "Find the perfect Cape Town location, photographer and plan for your proposal, date, matric shoot or picnic — matched to your budget.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1B2A2E",
+  "theme_color": "#1B2A2E",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

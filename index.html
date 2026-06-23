@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cape Town Photo Experience Guide</title>
+<meta name="description" content="Find the perfect Cape Town spot, photographer and plan for your proposal, date, matric shoot or picnic — matched to your budget.">
+<meta name="theme-color" content="#1B2A2E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#162225;
+  --dusk:#1B2A2E;
+  --dusk-2:#23373c;
+  --sand:#F2E6D8;
+  --sand-2:#EBDAC4;
+  --coral:#E8714A;
+  --coral-dark:#C7572F;
+  --gold:#C98A4B;
+  --teal:#4A7C7C;
+  --teal-light:#7FA8A3;
+  --white:#FFFCF8;
+  --line:rgba(22,34,37,0.12);
+  --line-light:rgba(255,252,248,0.18);
+  --shadow:0 12px 32px rgba(22,34,37,0.16);
+  --display:'Fraunces', serif;
+  --body:'Public Sans', -apple-system, sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  --radius:18px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--body);
+  background:var(--sand);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+::selection{background:var(--coral);color:var(--white);}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+}
+
+/* ============ VIEWFINDER FRAME SIGNATURE ============ */
+.viewfinder{
+  position:relative;
+  border-radius:var(--radius);
+}
+.viewfinder::before,.viewfinder::after,
+.viewfinder .vf-tl,.viewfinder .vf-tr,.viewfinder .vf-bl,.viewfinder .vf-br{
+  content:'';
+  position:absolute;
+  width:22px;height:22px;
+  border-color:var(--coral);
+  border-style:solid;
+  border-width:0;
+  opacity:0.9;
+  pointer-events:none;
+}
+.viewfinder .vf-tl{top:-2px;left:-2px;border-top-width:3px;border-left-width:3px;border-top-left-radius:8px;}
+.viewfinder .vf-tr{top:-2px;right:-2px;border-top-width:3px;border-right-width:3px;border-top-right-radius:8px;}
+.viewfinder .vf-bl{bottom:-2px;left:-2px;border-bottom-width:3px;border-left-width:3px;border-bottom-left-radius:8px;}
+.viewfinder .vf-br{bottom:-2px;right:-2px;border-bottom-width:3px;border-right-width:3px;border-bottom-right-radius:8px;}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;
+  background:rgba(242,230,216,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-brand{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.25rem;
+  letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-brand .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);display:inline-block;}
+.nav-links{display:flex;gap:26px;font-size:0.92rem;font-weight:600;}
+.nav-links a{text-decoration:none;opacity:0.75;transition:opacity .2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta{
+  background:var(--ink);color:var(--white);
+  padding:10px 18px;border-radius:100px;border:none;
+  font-weight:600;font-size:0.88rem;
+}
+@media(max-width:720px){.nav-links{display:none;}}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:70px 28px 90px;
+  background:linear-gradient(180deg,#2c2536 0%, #5a3a4a 28%, #c4623f 58%, #e8a35a 78%, #f2cf8f 100%);
+}
+.hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 115%, rgba(255,224,170,0.55), transparent 60%);
+  animation:glow 9s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  0%{opacity:0.65;}
+  100%{opacity:1;}
+}
+.hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;text-align:center;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:#ffe2bd;opacity:0.9;margin-bottom:18px;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(2.2rem,5.4vw,4rem);
+  line-height:1.04;
+  color:var(--white);
+  margin:0 0 16px;
+  letter-spacing:-0.02em;
+}
+.hero h1 em{font-style:italic;font-weight:500;color:#ffd9a8;}
+.hero p{
+  color:rgba(255,252,248,0.88);
+  font-size:1.08rem;max-width:560px;margin:0 auto 38px;
+  line-height:1.55;
+}
+
+/* prompt / search */
+.prompt-wrap{max-width:640px;margin:0 auto;padding:6px;}
+.prompt-card{
+  background:rgba(22,18,22,0.42);
+  backdrop-filter:blur(14px);
+  padding:22px;
+  border:1px solid rgba(255,252,248,0.25);
+}
+.prompt-label{
+  font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:#ffd9a8;display:block;text-align:left;margin-bottom:10px;
+}
+.prompt-input{
+  width:100%;
+  background:rgba(255,252,248,0.95);
+  border:none;border-radius:12px;
+  padding:16px 18px;
+  font-family:var(--body);font-size:1rem;
+  color:var(--ink);
+  resize:none;
+  min-height:54px;
+}
+.prompt-input:focus{outline:2px solid var(--coral);outline-offset:2px;}
+.quick-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;justify-content:flex-start;}
+.chip{
+  background:rgba(255,252,248,0.14);
+  border:1px solid rgba(255,252,248,0.3);
+  color:var(--white);
+  padding:7px 14px;border-radius:100px;
+  font-size:0.82rem;font-weight:500;
+  transition:background .2s;
+}
+.chip:hover{background:rgba(255,252,248,0.28);}
+.prompt-actions{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px;flex-wrap:wrap;}
+.budget-tag{font-family:var(--mono);color:#ffe2bd;font-size:0.85rem;}
+.btn-primary{
+  background:var(--coral);color:var(--white);
+  border:none;padding:13px 26px;border-radius:100px;
+  font-weight:700;font-size:0.95rem;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .15s, background .2s;
+}
+.btn-primary:hover{background:var(--coral-dark);transform:translateY(-1px);}
+.btn-primary:active{transform:translateY(0);}
+.plan-counter{
+  font-family:var(--mono);font-size:0.74rem;color:rgba(255,252,248,0.7);
+  margin-top:12px;text-align:left;
+}
+
+/* ============ SECTION SHELL ============ */
+section{padding:70px 28px;}
+.section-inner{max-width:1080px;margin:0 auto;}
+.section-head{margin-bottom:38px;max-width:620px;}
+.section-eyebrow{
+  font-family:var(--mono);font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--coral-dark);margin-bottom:10px;display:block;
+}
+.section-head h2{
+  font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3vw,2.3rem);
+  margin:0 0 12px;letter-spacing:-0.015em;
+}
+.section-head p{color:rgba(22,34,37,0.68);line-height:1.6;margin:0;}
+
+/* ============ RESULT CARD (signature) ============ */
+#results{display:none;}
+#results.show{display:block;}
+.result-card{
+  background:var(--white);
+  padding:30px;
+  position:relative;
+  max-width:640px;
+  margin:0 auto;
+  box-shadow:var(--shadow);
+}
+.result-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:12px;}
+.result-kicker{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);}
+.result-card h3{font-family:var(--display);font-size:1.6rem;font-weight:600;margin:6px 0 0;}
+.golden-chip{
+  background:var(--sand-2);
+  border-radius:100px;padding:7px 14px;
+  font-family:var(--mono);font-size:0.78rem;font-weight:600;
+  color:var(--coral-dark);white-space:nowrap;
+}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+.result-item{border-top:1px solid var(--line);padding-top:12px;}
+.result-item .ri-label{
+  font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(22,34,37,0.5);font-weight:700;margin-bottom:4px;
+}
+.result-item .ri-value{font-size:0.97rem;font-weight:600;}
+.cost-row{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--dusk);color:var(--white);
+  border-radius:14px;padding:18px 20px;margin-bottom:20px;
+}
+.cost-row .cl{font-size:0.85rem;opacity:0.75;}
+.cost-row .cv{font-family:var(--mono);font-size:1.4rem;font-weight:600;color:#ffd9a8;}
+.result-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-secondary{
+  background:transparent;border:1.5px solid var(--ink);
+  color:var(--ink);padding:12px 22px;border-radius:100px;
+  font-weight:600;font-size:0.9rem;
+}
+.paywall-note{
+  text-align:center;font-size:0.85rem;color:rgba(22,34,37,0.6);
+  margin-top:16px;font-family:var(--mono);
+}
+
+/* ============ CATEGORY GRID ============ */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;}
+.cat-card{
+  background:var(--white);border-radius:14px;padding:22px 18px;
+  border:1px solid var(--line);text-align:left;
+}
+.cat-card .ic{font-size:1.6rem;margin-bottom:10px;display:block;}
+.cat-card h4{font-family:var(--display);font-size:1.05rem;margin:0 0 4px;font-weight:600;}
+.cat-card p{font-size:0.84rem;color:rgba(22,34,37,0.6);margin:0;line-height:1.5;}
+
+/* ============ LISTINGS ============ */
+.listing-row{
+  display:flex;gap:18px;overflow-x:auto;padding-bottom:10px;
+  scrollbar-width:thin;
+}
+.lcard{
+  flex:0 0 250px;background:var(--white);border-radius:16px;overflow:hidden;
+  border:1px solid var(--line);
+}
+.lcard .lc-img{
+  height:140px;
+  background:linear-gradient(135deg,var(--teal),var(--dusk-2));
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.5);font-family:var(--mono);font-size:0.7rem;
+}
+.lcard .lc-body{padding:16px;}
+.lcard h5{font-family:var(--display);font-size:1.05rem;margin:0 0 4px;font-weight:600;}
+.lcard .tag{
+  display:inline-block;font-family:var(--mono);font-size:0.68rem;
+  background:var(--sand-2);color:var(--coral-dark);padding:3px 9px;border-radius:100px;margin-bottom:8px;
+}
+.lcard p{font-size:0.82rem;color:rgba(22,34,37,0.65);margin:0;}
+.lcard .price{font-family:var(--mono);font-weight:600;font-size:0.85rem;margin-top:8px;color:var(--ink);}
+
+/* ============ REVENUE / FOR VENDORS ============ */
+.dark-section{background:var(--dusk);color:var(--white);}
+.dark-section .section-eyebrow{color:#ffb98c;}
+.dark-section .section-head p{color:rgba(255,252,248,0.7);}
+.vendor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+.vcard{
+  background:rgba(255,252,248,0.06);
+  border:1px solid var(--line-light);
+  border-radius:16px;padding:22px;
+}
+.vcard .vn{font-family:var(--mono);font-size:0.75rem;color:#ffb98c;margin-bottom:10px;}
+.vcard h4{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:0 0 8px;}
+.vcard p{font-size:0.85rem;color:rgba(255,252,248,0.65);line-height:1.55;margin:0 0 12px;}
+.vcard .vprice{font-family:var(--mono);font-weight:600;color:var(--white);font-size:0.95rem;}
+
+/* ============ PRICING ============ */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.pcard{
+  background:var(--white);border-radius:18px;padding:30px;border:1px solid var(--line);
+}
+.pcard.featured{
+  background:var(--ink);color:var(--white);
+  position:relative;
+}
+.pcard .ptier{font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;}
+.pcard .pprice{font-family:var(--display);font-size:2.2rem;font-weight:600;margin:10px 0;}
+.pcard .pprice span{font-size:0.95rem;font-weight:400;opacity:0.6;}
+.pcard ul{list-style:none;padding:0;margin:18px 0;}
+.pcard li{padding:7px 0;font-size:0.9rem;display:flex;gap:8px;}
+.pcard li::before{content:'✓';color:var(--coral);font-weight:700;}
+.pcard.featured li::before{color:#ffd9a8;}
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--ink);color:rgba(255,252,248,0.55);
+  padding:40px 28px;text-align:center;font-size:0.82rem;
+}
+footer strong{color:var(--white);}
+
+/* ============ MODAL ============ */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(22,18,22,0.55);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px;
+}
+.modal-backdrop.show{display:flex;}
+.modal{
+  background:var(--white);border-radius:18px;padding:30px;max-width:420px;width:100%;
+}
+.modal h3{font-family:var(--display);margin:0 0 10px;}
+.modal p{font-size:0.9rem;color:rgba(22,34,37,0.65);line-height:1.55;}
+.modal-close{margin-top:18px;width:100%;}
+
+/* focus visibility */
+a:focus-visible,button:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--coral);outline-offset:2px;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand"><span class="dot"></span>Golden Hour CT</div>
+  <div class="nav-links">
+    <a href="#plan">Plan</a>
+    <a href="#categories">What we cover</a>
+    <a href="#listings">Vendors</a>
+    <a href="#for-vendors">For Vendors</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('prompt-input').focus()">Plan my shoot</button>
+</nav>
+
+<header class="hero" id="plan">
+  <div class="hero-inner">
+    <span class="eyebrow">Cape Town · Photo &amp; Date Planning</span>
+    <h1>Find the spot, the light,<br><em>and the people</em> to capture it.</h1>
+    <p>Tell us your moment and your budget. We'll match you to a location, a photographer, sunset timing, decor and food — sized to what you have to spend.</p>
+
+    <div class="prompt-wrap">
+      <div class="prompt-card viewfinder">
+        <span class="vf-tl"></span><span class="vf-tr"></span><span class="vf-bl"></span><span class="vf-br"></span>
+        <span class="prompt-label">Tell us what you're planning</span>
+        <textarea id="prompt-input" class="prompt-input" rows="2" placeholder="e.g. I have R5000 and want a surprise proposal"></textarea>
+        <div class="quick-chips">
+          <button class="chip" data-fill="I have R5000 and want a surprise proposal">Surprise proposal</button>
+          <button class="chip" data-fill="R2500 for a matric photoshoot">Matric shoot</button>
+          <button class="chip" data-fill="R3000 romantic dinner and photos for an anniversary">Anniversary dinner</button>
+          <button class="chip" data-fill="R1200 picnic with a couple of friends">Picnic</button>
+          <button class="chip" data-fill="R15000 small wedding for 20 guests">Small wedding</button>
+        </div>
+        <div class="prompt-actions">
+          <span class="budget-tag" id="parsed-budget">Budget: not set yet</span>
+          <button class="btn-primary" id="plan-btn">✨ Get my plan</button>
+        </div>
+        <div class="plan-counter" id="plan-counter">3 free recommendations left this month — Premium gets unlimited.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="results-section">
+  <div class="section-inner">
+    <div id="results">
+      <div class="section-head" style="margin:0 auto 26px;text-align:center;max-width:640px;">
+        <span class="section-eyebrow">Your recommended plan</span>
+      </div>
+      <div class="result-card viewfinder" id="result-card">
+        <span class="vf-tl"></span><span class="vf-tr"></span><span class="vf-bl"></span><span class="vf-br"></span>
+        <div class="result-top">
+          <div>
+            <span class="result-kicker" id="r-occasion">Proposal</span>
+            <h3 id="r-location">Maiden's Cove</h3>
+          </div>
+          <span class="golden-chip" id="r-time">🌅 5:45 PM</span>
+        </div>
+        <div class="result-grid">
+          <div class="result-item"><div class="ri-label">📸 Photographer</div><div class="ri-value" id="r-photo">Simbachips Photography</div></div>
+          <div class="result-item"><div class="ri-label">🎥 Videographer</div><div class="ri-value" id="r-video">—</div></div>
+          <div class="result-item"><div class="ri-label">🍽 Nearby restaurant</div><div class="ri-value" id="r-food">—</div></div>
+          <div class="result-item"><div class="ri-label">🎈 Decor</div><div class="ri-value" id="r-decor">Picnic setup</div></div>
+        </div>
+        <div class="cost-row">
+          <span class="cl">💰 Estimated total</span>
+          <span class="cv" id="r-cost">R4,500</span>
+        </div>
+        <div class="result-actions">
+          <button class="btn-primary" id="book-btn">Book now</button>
+          <button class="btn-secondary" id="another-btn">Try another idea</button>
+        </div>
+      </div>
+      <p class="paywall-note" id="paywall-note"></p>
+    </div>
+  </div>
+</section>
+
+<section id="categories">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-eyebrow">What we cover</span>
+      <h2>Every piece of the moment, matched at once</h2>
+      <p>Instead of seven separate bookings, one plan brings location, light, people and food together.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card"><span class="ic">📍</span><h4>Location</h4><p>Hidden gems and proposal-ready viewpoints around the peninsula.</p></div>
+      <div class="cat-card"><span class="ic">📸</span><h4>Photographer</h4><p>Vetted local photographers matched to your style and budget.</p></div>
+      <div class="cat-card"><span class="ic">🎥</span><h4>Videographer</h4><p>For moments you'll want to watch back, not just look at.</p></div>
+      <div class="cat-card"><span class="ic">🍽</span><h4>Restaurants</h4><p>Romantic, photogenic spots within reach of your shoot.</p></div>
+      <div class="cat-card"><span class="ic">🎈</span><h4>Decor</h4><p>Picnics, balloon arches, florals — sized to your budget.</p></div>
+      <div class="cat-card"><span class="ic">🌅</span><h4>Sunset time</h4><p>Golden-hour timing calculated for the exact date and spot.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="listings" style="background:var(--sand-2);">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-eyebrow">Featured this month</span>
+      <h2>Vendors people are booking</h2>
+      <p>Featured placement is paid — it doesn't change who gets matched to your plan.</p>
+    </div>
+    <div class="listing-row" id="listing-row"></div>
+  </div>
+</section>
+
+<section id="for-vendors" class="dark-section">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-eyebrow">For vendors</span>
+      <h2>Get matched to people already planning to spend</h2>
+      <p>Every recommendation is a warm lead — someone with a date, a budget and an occasion in mind.</p>
+    </div>
+    <div class="vendor-grid">
+      <div class="vcard"><div class="vn">01 · Photography</div><h4>Bookings</h4><p>Get matched directly into proposal, matric and couple plans. Pay per booking or go featured.</p><div class="vprice">Commission on booking</div></div>
+      <div class="vcard"><div class="vn">02 · Restaurants &amp; venues</div><h4>Featured listing</h4><p>Appear first when your venue fits a couple's date or budget.</p><div class="vprice">R300 – R2,000 / month</div></div>
+      <div class="vcard"><div class="vn">03 · Videographers</div><h4>Directory listing</h4><p>A standing slot in every relevant recommendation.</p><div class="vprice">Monthly subscription</div></div>
+      <div class="vcard"><div class="vn">04 · Wedding vendors</div><h4>Florists · decorators · makeup · car hire · picnic co's</h4><p>One directory, every vendor type a wedding actually needs.</p><div class="vprice">From R300 / month</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-head" style="margin:0 auto 38px;text-align:center;max-width:560px;">
+      <span class="section-eyebrow">For couples</span>
+      <h2>Plan once for free. Plan often for less than a coffee.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="pcard">
+        <div class="ptier">Free</div>
+        <div class="pprice">R0</div>
+        <ul>
+          <li>3 recommendations per month</li>
+          <li>Full location &amp; vendor matching</li>
+          <li>Sunset time &amp; budget estimate</li>
+        </ul>
+      </div>
+      <div class="pcard featured">
+        <div class="ptier">Premium AI Planner</div>
+        <div class="pprice">R49<span>– R99/mo</span></div>
+        <ul>
+          <li>Unlimited recommendations</li>
+          <li>Compare multiple plans side by side</li>
+          <li>Save &amp; share your shortlist</li>
+          <li>Priority vendor replies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Golden Hour CT</strong> — Cape Town Photo Experience Guide.<br>
+  Built for proposals, dates, matric shoots, picnics and weddings around the peninsula.
+</footer>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal viewfinder" style="position:relative;">
+    <span class="vf-tl"></span><span class="vf-tr"></span><span class="vf-bl"></span><span class="vf-br"></span>
+    <h3 id="modal-title">Request to book</h3>
+    <p id="modal-body">This is a demo flow — in the live app this opens a booking request with your chosen photographer and venue, and notifies them directly.</p>
+    <button class="btn-primary modal-close" id="modal-close">Got it</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
